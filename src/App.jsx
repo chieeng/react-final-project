@@ -2,6 +2,8 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import { useState } from "react";
 
 import Navbar from "./components/Navbar";
+import ChatBox from "./components/ChatBox";
+
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Login from "./pages/Login";
@@ -13,7 +15,6 @@ import "./App.css";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
   const [bookings, setBookings] = useState([]);
 
   const addBooking = (listing) => {
@@ -33,7 +34,6 @@ function App() {
         <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
         <Route path="/register" element={<Register />} />
 
-        {/* 🔒 PROTECTED DASHBOARD */}
         <Route
           path="/dashboard"
           element={
@@ -43,7 +43,6 @@ function App() {
           }
         />
 
-        {/* 🔥 PASS LOGIN STATUS */}
         <Route
           path="/listing/:id"
           element={
@@ -55,6 +54,9 @@ function App() {
         />
 
       </Routes>
+
+      {/* 🔥 FLOATING CHAT */}
+      <ChatBox />
 
     </Router>
   );
